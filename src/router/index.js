@@ -92,6 +92,10 @@ export const router = new VueRouter({
       path: '/register',
       name: 'register',
       component: () => import('@/views/RegisterPage')
+    },
+    {
+      path: '*',
+      component:  () => import('@/views/NotFoundPage')
     }
   ]
 });
