@@ -1,17 +1,12 @@
 <template>
-  <transition
-    v-bind="$attrs"
-    v-on="$listeners"
-    name="fade"
-    mode="out-in"
-  >
+  <transition v-bind="$attrs" v-on="$listeners" name="fade" mode="out-in">
     <slot name="default" />
   </transition>
 </template>
 
 <script>
 export default {
-  name: 'FadeTransition',
+  name: "FadeTransition"
 };
 </script>
 

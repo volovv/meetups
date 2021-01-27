@@ -13,21 +13,21 @@
 
 <script>
 export default {
-  name: 'DropdownButton',
+  name: "DropdownButton",
 
   props: {
     options: {
       type: Array,
-      required: true,
+      required: true
     },
     value: String,
-    title: String,
+    title: String
   },
 
   model: {
-    prop: 'value',
-    event: 'change',
-  },
+    prop: "value",
+    event: "change"
+  }
 };
 </script>
 

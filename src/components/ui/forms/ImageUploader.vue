@@ -2,7 +2,7 @@
   <div class="image-uploader">
     <label
       class="image-uploader__preview"
-      :class="{'image-uploader__preview-loading': loading}"
+      :class="{ 'image-uploader__preview-loading': loading }"
       :style="bgStyle"
     >
       <span>{{ label }}</span>
@@ -19,14 +19,14 @@
 </template>
 
 <script>
-import { ImageService } from '../image-service';
+import { ImageService } from "../image-service";
 
 export default {
-  name: 'ImageUploader',
+  name: "ImageUploader",
 
   model: {
-    prop: 'imageId',
-    event: 'change'
+    prop: "imageId",
+    event: "change"
   },
 
   props: {
@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       loading: false
-    }
+    };
   },
 
   computed: {
@@ -49,7 +49,7 @@ export default {
       // если есть ид изображения, то вывыдем его фоном
       if (this.imageId !== null) {
         bgStyle = {
-          '--bg-image': `url('${ImageService.getImageURL(this.imageId)}')`
+          "--bg-image": `url('${ImageService.getImageURL(this.imageId)}')`
         };
       }
 
@@ -57,14 +57,14 @@ export default {
     },
     label() {
       if (this.loading) {
-        return 'Загрузка...';
+        return "Загрузка...";
       }
 
       if (this.imageId !== null) {
-        return 'Удалить изображение';
+        return "Удалить изображение";
       }
 
-      return 'Загрузить изображение';
+      return "Загрузить изображение";
     }
   },
 
@@ -79,8 +79,8 @@ export default {
 
       ImageService.uploadImage(files[0])
         .then(image => {
-          const imageId = (image.id || image.id === 0) ? image.id : null;
-          this.$emit('change', imageId);
+          const imageId = image.id || image.id === 0 ? image.id : null;
+          this.$emit("change", imageId);
         })
         .finally(() => {
           this.loading = false;
@@ -92,7 +92,7 @@ export default {
       if (this.imageId) {
         $event.preventDefault();
         $event.target.value = null;
-        this.$emit('change', null);
+        this.$emit("change", null);
       }
     }
   }
@@ -129,7 +129,7 @@ export default {
 
 .image-uploader .image-uploader__preview > span {
   color: var(--white);
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   font-weight: 600;
   font-size: 20px;
   line-height: 28px;

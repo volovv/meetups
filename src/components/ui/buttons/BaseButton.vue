@@ -3,7 +3,7 @@
     :is="tag"
     v-bind="$attrs"
     v-on="$listeners"
-    :class="{'button_block': block}"
+    :class="{ button_block: block }"
     class="button"
   >
     <slot />
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'BaseButton',
+  name: "BaseButton",
 
   props: {
     block: {
@@ -20,10 +20,10 @@ export default {
     },
     tag: {
       type: String,
-      default: 'button',
+      default: "button",
       validator(value) {
         // Значение должно соответствовать одной из этих строк
-        return ['button', 'a', 'router-link'].indexOf(value) !== -1
+        return ["button", "a", "router-link"].indexOf(value) !== -1;
       }
     }
   }

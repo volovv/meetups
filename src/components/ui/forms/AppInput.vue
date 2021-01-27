@@ -1,71 +1,92 @@
 <template>
   <div
+    :class="{
+      'input-group_icon': withIcon.left || withIcon.right,
+      'input-group_icon-left': withIcon.left,
+      'input-group_icon-right': withIcon.right
+    }"
     class="input-group"
-    :class="{ 'input-group_icon': hasIcon, 'input-group_icon-left': hasIcon }"
   >
-    <slot name="left-icon"></slot>
-    <textarea
-      v-if="multiline"
-      class="form-control"
-      :value="value"
+    <slot name="left-icon" />
+    <component
+      :is="type"
       v-bind="$attrs"
       v-on="listeners"
-    ></textarea>
-    <input
-      v-else
+      :value.prop="value"
+      :class="{ 'form-control_sm': small, 'form-control_rounded': rounded }"
       class="form-control"
-      :value="value"
-      v-bind="$attrs"
-      v-on="listeners"
-    />
+    >
+    </component>
+    <slot name="right-icon" />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AppInput',
+  name: "AppInput",
 
   inheritAttrs: false,
 
+  model: {
+    prop: "value",
+    event: "input"
+  },
+
   props: {
-    value: {},
-    multiline: Boolean,
+    small: {
+      type: Boolean,
+      default: false
+    },
+    rounded: {
+      type: Boolean,
+      default: false
+    },
+    multiline: {
+      type: Boolean,
+      default: false
+    },
+    value: {
+      type: String,
+      default: ""
+    }
   },
 
   data() {
     return {
-      hasIcon: false,
+      withIcon: {
+        left: false,
+        right: false
+      }
     };
   },
 
-  mounted() {
-    this.updateHasIcon();
-  },
-
-  updated() {
-    this.updateHasIcon();
-  },
-
-  model: {
-    prop: 'value',
-    event: 'input',
-  },
-
   computed: {
+    type() {
+      return this.multiline ? "textarea" : "input";
+    },
     listeners() {
       return {
         ...this.$listeners,
-        input: ($event) => this.$emit('input', $event.target.value),
-        change: ($event) => this.$emit('change', $event.target.value),
+        input: $event => this.$emit("input", $event.target.value),
+        change: $event => this.$emit("change", $event.target.value)
       };
-    },
+    }
+  },
+
+  mounted() {
+    this.updateWithIcon();
+  },
+
+  updated() {
+    this.updateWithIcon();
   },
 
   methods: {
-    updateHasIcon() {
-      this.hasIcon = !!this.$slots['left-icon'];
-    },
-  },
+    updateWithIcon() {
+      this.withIcon.left = !!this.$slots["left-icon"];
+      this.withIcon.right = !!this.$slots["right-icon"];
+    }
+  }
 };
 </script>
 
@@ -75,7 +96,7 @@ export default {
   height: 52px;
   border-radius: 8px;
   border: 2px solid var(--blue-light);
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   font-weight: 600;
   font-size: 20px;
   line-height: 28px;

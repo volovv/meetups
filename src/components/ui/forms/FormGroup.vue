@@ -7,15 +7,15 @@
 
 <script>
 export default {
-  name: 'FormGroup',
+  name: "FormGroup",
 
   props: {
     inline: {
       type: Boolean,
-      default: false,
+      default: false
     },
-    label: String,
-  },
+    label: String
+  }
 };
 </script>
 

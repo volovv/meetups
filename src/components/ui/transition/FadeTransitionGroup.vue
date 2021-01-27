@@ -1,29 +1,29 @@
 <script>
 export default {
-  name: 'FadeTransitionGroup',
+  name: "FadeTransitionGroup",
 
-  render: function (createElement) {
+  render: function(createElement) {
     let elements = this.$slots.default;
 
     elements = elements.map(el => {
-      el.data.class = {...el.data.class, 'fade-list-item': true};
+      el.data.class = { ...el.data.class, "fade-list-item": true };
       return el;
     });
 
     return createElement(
-      'transition-group',
+      "transition-group",
       {
         class: {
-          'fade-list': true
+          "fade-list": true
         },
         attrs: {
           ...this.$attrs,
-          name: 'fade-list'
+          name: "fade-list"
         },
         on: this.$listeners
       },
       elements
-    )
+    );
   }
 };
 </script>

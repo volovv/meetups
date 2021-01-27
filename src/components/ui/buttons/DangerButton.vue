@@ -1,18 +1,14 @@
 <template>
-  <BaseButton
-    v-bind="$attrs"
-    v-on="$listeners"
-    class="button_danger"
-  >
+  <BaseButton v-bind="$attrs" v-on="$listeners" class="button_danger">
     <slot />
   </BaseButton>
 </template>
 
 <script>
-import BaseButton from './BaseButton';
+import BaseButton from "./BaseButton";
 
 export default {
-  name: 'DangerButton',
+  name: "DangerButton",
 
   components: {
     BaseButton
