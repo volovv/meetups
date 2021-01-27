@@ -21,41 +21,50 @@
         <span v-if="meetup.organizing" class="meetups-list__badge"
           >Организую</span
         >
-        <ul class="info-list">
-          <li>
-            <app-icon icon="user" class="info-list__icon" />
-            {{ meetup.organizer }}
-          </li>
-          <li>
-            <app-icon icon="map" class="info-list__icon" />
-            {{ meetup.place }}
-          </li>
-          <li>
-            <app-icon icon="cal-lg" class="info-list__icon" />
-            <time :datetime="meetup.dateOnlyString">{{
-              meetup.localDate
-            }}</time>
-          </li>
-        </ul>
+
+        <meetup-info
+          :organizer="meetup.organizer"
+          :place="meetup.place"
+          :date="meetup.date"
+        />
       </div>
     </div>
   </router-link>
 </template>
 
 <script>
-import AppIcon from "@/components/ui/AppIcon";
+import MeetupInfo from "@/components/meetup/MeetupInfo";
 
 export default {
   name: "MeetupsListItem",
 
   components: {
-    AppIcon
+    MeetupInfo
   },
 
   props: {
     meetup: {
       required: true,
       type: Object
+    }
+  },
+
+  computed: {
+    list() {
+      let id = 0;
+
+      return [
+        {
+          id: id++,
+          icon: "user",
+          text: this.meetup.organizer
+        },
+        {
+          id: id++,
+          icon: "map",
+          text: this.meetup.place
+        }
+      ];
     }
   }
 };
