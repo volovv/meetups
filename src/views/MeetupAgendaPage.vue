@@ -1,9 +1,27 @@
 <template>
-  <div class="bg-white">
-
-  </div>
+  <meetup-agenda
+    v-if="meetup.agenda && meetup.agenda.length"
+    :agenda="meetup.agenda"
+  />
 </template>
 
-<script></script>
+<script>
+import MeetupAgenda from "@/components/meetup/MeetupAgenda.vue";
+
+export default {
+  name: "MeetupAgendaPage",
+
+  components: {
+    MeetupAgenda
+  },
+
+  props: {
+    meetup: {
+      type: Object,
+      required: true
+    }
+  }
+};
+</script>
 
 <style scoped></style>

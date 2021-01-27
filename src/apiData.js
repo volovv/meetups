@@ -19,6 +19,15 @@ export async function fetchMeetups() {
 }
 
 /**
+ * Получает данные митапа по его ID с API
+ * @param {Number} id
+ * @return {Promise}
+ */
+export async function fetchMeetup(id) {
+  return fetch(`${API_URL}/meetups/${id}`).then(res => res.json());
+}
+
+/**
  * Выполняет авторизацию по логину и паролю и возвращает результат
  * @param {string} email - email пользователя
  * @param {string} password - пароль пользователя

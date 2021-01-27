@@ -42,60 +42,59 @@ export const router = new VueRouter({
   routes: [
     {
       path: "/",
-      name: "index",
-      component: () => import("@/views/MeetupsPage")
+      component: () => import("@/views/MeetupsPage"),
+      name: "index"
     },
     {
       path: "/meetups",
-      name: "meetups",
-      component: () => import("@/views/MeetupsPage")
+      component: () => import("@/views/MeetupsPage"),
+      name: "meetups"
     },
     {
       path: "/meetups/:meetupId(\\d+)",
-      redirect: to => ({ name: "meetup-description", params: to.params }),
+      component: () => import("@/views/MeetupPage"),
       name: "meetup",
+      redirect: to => ({ name: "meetup-description", params: to.params }),
       props: true,
       meta: {
         showReturnToMeetups: true,
         saveScrollPosition: true
       },
-      component: () => import("@/views/MeetupPage"),
       children: [
         {
-          path: "",
-          alias: "description",
+          path: "description",
+          component: () => import("@/views/MeetupDescriptionPage"),
           name: "meetup-description",
-          props: true,
-          component: () => import("@/views/MeetupDescriptionPage")
+          props: true
         },
         {
           path: "agenda",
+          component: () => import("@/views/MeetupAgendaPage"),
           name: "meetup-agenda",
-          props: true,
-          component: () => import("@/views/MeetupAgendaPage")
+          props: true
         },
         {
           path: "edit",
+          component: () => import("@/views/MeetupEditPage"),
           name: "meetup-edit",
-          props: true,
-          component: () => import("@/views/MeetupEditPage")
+          props: true
         }
       ]
     },
     {
       path: "/meetups/create",
-      name: "meetup-create",
-      component: () => import("@/views/MeetupCreatePage")
+      component: () => import("@/views/MeetupCreatePage"),
+      name: "meetup-create"
     },
     {
       path: "/login",
-      name: "login",
-      component: () => import("@/views/LoginPage")
+      component: () => import("@/views/LoginPage"),
+      name: "login"
     },
     {
       path: "/register",
-      name: "register",
-      component: () => import("@/views/RegisterPage")
+      component: () => import("@/views/RegisterPage"),
+      name: "register"
     },
     {
       path: "*",
