@@ -32,16 +32,16 @@
 </template>
 
 <script>
-import { fetchMeetup, getMeetupCoverLink } from "@/apiData";
-import ContentTabs from "@/components/ui/ContentTabs.vue";
-import PrimaryButton from "@/components/ui/buttons/PrimaryButton.vue";
-import SecondaryButton from "@/components/ui/buttons/SecondaryButton.vue";
-import DangerButton from "@/components/ui/buttons/DangerButton.vue";
+import { fetchMeetup, getMeetupCoverLink } from "@/apiService";
+import ContentTabs from "@/components/ui/ContentTabs";
+import PrimaryButton from "@/components/ui/buttons/PrimaryButton";
+import SecondaryButton from "@/components/ui/buttons/SecondaryButton";
+import DangerButton from "@/components/ui/buttons/DangerButton";
 import MeetupCover from "@/components/meetup/MeetupCover.vue";
 import MeetupInfo from "@/components/meetup/MeetupInfo.vue";
 
 export default {
-  name: "MeetupView",
+  name: "MeetupPage",
 
   components: {
     ContentTabs,
@@ -52,10 +52,16 @@ export default {
     MeetupInfo
   },
 
+  props: {
+    meetupId: {
+      type: Number,
+      required: true
+    }
+  },
+
   data() {
     return {
       meetup: null,
-      meetupId: this.$route.params.meetupId,
       tabs: [
         { to: { name: "meetup-description" }, text: "Описание" },
         { to: { name: "meetup-agenda" }, text: "Программа" }
