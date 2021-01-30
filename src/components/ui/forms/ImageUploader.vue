@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { ImageService } from "../image-service";
+import { ImageService } from "@/imageService";
 
 export default {
   name: "ImageUploader",
