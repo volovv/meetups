@@ -55,7 +55,9 @@ export const router = new VueRouter({
       component: () => import("@/views/MeetupPage"),
       name: "meetup",
       redirect: to => ({ name: "meetup-description", params: to.params }),
-      props: true,
+      props: route => ({
+        meetupId: +route.params.meetupId
+      }),
       meta: {
         showReturnToMeetups: true,
         saveScrollPosition: true
@@ -72,14 +74,16 @@ export const router = new VueRouter({
           component: () => import("@/views/MeetupAgendaPage"),
           name: "meetup-agenda",
           props: true
-        },
-        {
-          path: "edit",
-          component: () => import("@/views/MeetupEditPage"),
-          name: "meetup-edit",
-          props: true
         }
       ]
+    },
+    {
+      path: "/meetups/:meetupId(\\d+)/edit",
+      component: () => import("@/views/MeetupEditPage"),
+      name: "meetup-edit",
+      props: route => ({
+        meetupId: +route.params.meetupId
+      }),
     },
     {
       path: "/meetups/create",
