@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { fetchMeetups, getMeetupCoverLink } from "@/apiData";
+import { fetchMeetups, getMeetupCoverLink } from "@/apiService";
 import MeetupsList from "@/components/meetups/MeetupsList";
 import MeetupsCalendar from "@/components/meetups/MeetupsCalendar";
 import MeetupsFilter from "@/components/meetups/MeetupsFilter";
