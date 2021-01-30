@@ -41,9 +41,7 @@
         </form-group>
 
         <div v-if="localView" class="form-group form-group_inline">
-          <page-tabs
-            :selected.sync="localView"
-          ></page-tabs>
+          <page-tabs :selected.sync="localView"></page-tabs>
         </div>
       </slot>
     </div>

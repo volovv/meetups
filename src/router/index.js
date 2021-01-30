@@ -83,7 +83,7 @@ export const router = new VueRouter({
       name: "meetup-edit",
       props: route => ({
         meetupId: +route.params.meetupId
-      }),
+      })
     },
     {
       path: "/meetups/create",
