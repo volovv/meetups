@@ -116,7 +116,7 @@ export default {
             invalidFields.push({
               name: field.field,
               message:
-                validate.message || `Неправильно заполнено поле ${field.label}`
+                validate.message || `Неправильно заполнено поле ${field.title}`
             });
           }
         });
