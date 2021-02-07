@@ -1,5 +1,5 @@
 /** URL адрес API */
-export const API_URL = "https://course-vue.javascript.ru/api";
+import { API_URL } from "@/apiService";
 
 export const ImageService = {
   /**
