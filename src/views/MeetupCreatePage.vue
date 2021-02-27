@@ -3,6 +3,7 @@
     <meetup-form
       :meetup="meetup"
       submitText="Создать"
+      @submit="submit"
       @cancel="cancel"
     ></meetup-form>
   </meetup-form-layout>
@@ -22,11 +23,22 @@ export default {
 
   data() {
     return {
-      meetup: {}
+      meetup: {
+        id: 0,
+        title: '',
+        description: '',
+        imageId: null,
+        date: new Date(),
+        place: '',
+        agenda: [],
+      }
     };
   },
 
   methods: {
+    submit(meetup) {
+      this.meetup = meetup;
+    },
     // вернуться на главную страницу
     cancel() {
       this.$router
