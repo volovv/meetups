@@ -4,6 +4,7 @@
       v-if="meetup"
       :meetup="meetup"
       submitText="Сохранить"
+      @submit="submit"
       @cancel="cancel"
     ></meetup-form>
   </meetup-form-layout>
@@ -44,6 +45,9 @@ export default {
     // Получение данных митапа
     async getMeetup() {
       this.meetup = await fetchMeetup(this.meetupId);
+    },
+    submit(meetup) {
+      this.meetup = meetup;
     },
     // вернуться на страницу редактируемого митапа
     cancel() {
