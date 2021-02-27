@@ -129,7 +129,7 @@ export default {
     localAgendaItem: {
       deep: true,
       handler(newValue) {
-        this.$emit("update:agendaItem", newValue);
+        this.$emit("change", newValue);
       }
     }
   },

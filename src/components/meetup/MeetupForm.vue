@@ -25,9 +25,10 @@
 
       <h3 class="form__section-title">Программа</h3>
       <meetup-agenda-item-form
-        v-for="(agendaItem, index) in localMeetup.agenda"
+        v-for="agendaItem in localMeetup.agenda"
         :key="agendaItem.id"
-        :agendaItem.sync="localMeetup.agenda[index]"
+        :agendaItem="agendaItem"
+        @change="updateAgendaItem(agendaItem.id, $event)"
         @remove="removeAgendaItem(agendaItem.id)"
         class="mb-3"
       />
@@ -108,6 +109,7 @@ export default {
       this.$emit("cancel");
     },
     submit() {
+      console.log(this.localMeetup);
       this.$emit("submit", cloneDeep(this.localMeetup));
     },
     addAgendaItem() {
@@ -123,11 +125,29 @@ export default {
 
       this.localMeetup.agenda = [...this.localMeetup.agenda, newAgendaItem];
     },
+    updateAgendaItem(id, newAgendaItem) {
+      this.changeAgendaInMeetup(id, newAgendaItem);
+    },
     removeAgendaItem(id) {
-      const index = this.localMeetup.agenda.findIndex(
+      this.changeAgendaInMeetup(id);
+    },
+    changeAgendaInMeetup(id, newAgendaItem) {
+      const index = this.findAgendaItemIndexById(id);
+      if (index < 0) {
+        return;
+      }
+
+      let args = [index, 1];
+      if (newAgendaItem) {
+        args.push(newAgendaItem);
+      }
+
+      this.localMeetup.agenda.splice(...args);
+    },
+    findAgendaItemIndexById(id) {
+      return this.localMeetup.agenda.findIndex(
         agendaItem => agendaItem.id === id
       );
-      this.localMeetup.agenda.splice(index, 1);
     },
     getDateFormat(value) {
       const date = new Date(value) || new Date();
