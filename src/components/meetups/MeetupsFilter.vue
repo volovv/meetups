@@ -24,7 +24,7 @@
         :changeFilter="changeFilter"
         :changeView="changeView"
       >
-        <form-group :inline="true">
+        <form-group :inline="true" id="filters-panel__search">
           <app-input
             id="filters-panel__search"
             type="text"
