@@ -30,7 +30,7 @@ export default {
   margin-bottom: 0;
 }
 
-.form-group.form-group_inline >>> + .form-group.form-group_inline {
+.form-group.form-group_inline + .form-group.form-group_inline {
   margin-left: 16px;
 }
 
