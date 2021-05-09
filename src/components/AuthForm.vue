@@ -11,7 +11,9 @@
         v-bind="field.props"
         :[field.model.prop]="field[field.model.prop]"
         @[field.model.event]="change($event, index, field)"
-      ></component>
+      >
+        {{ field.label }}
+      </component>
     </form-group>
 
     <div class="form__buttons">

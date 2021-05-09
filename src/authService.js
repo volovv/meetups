@@ -100,12 +100,10 @@ export const getRegisterFieldSpecifications = () => {
     },
     {
       ...common,
+      label: "Я согласен с условиями",
       field: "agree",
       component: "app-checkbox",
       model: { prop: "checked", event: "change" },
-      props: {
-        label: "Я согласен с условиями"
-      },
       validate: [
         {
           rule: "requiredCheckbox",
