@@ -25,12 +25,12 @@ export default {
     return {
       meetup: {
         id: 0,
-        title: '',
-        description: '',
+        title: "",
+        description: "",
         imageId: null,
         date: new Date(),
-        place: '',
-        agenda: [],
+        place: "",
+        agenda: []
       }
     };
   },

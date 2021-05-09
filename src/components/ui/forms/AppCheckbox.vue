@@ -14,18 +14,16 @@
 
 <script>
 export default {
-  name: 'AppCheckbox',
+  name: "AppCheckbox",
 
   inheritAttrs: false,
 
   model: {
-    prop: 'checked',
-    event: 'change'
+    prop: "checked",
+    event: "change"
   },
 
-  props: [
-    'checked'
-  ],
+  props: ["checked"],
 
   computed: {
     model: {
@@ -33,13 +31,13 @@ export default {
         return this.checked;
       },
       set(newValue) {
-        this.$emit('change', newValue);
+        this.$emit("change", newValue);
       }
     },
     listeners() {
       return {
         ...this.$listeners,
-        change: ($event) => {
+        change: $event => {
           $event.preventDefault();
         }
       };
@@ -91,7 +89,7 @@ export default {
 }
 
 .checkbox > span:after {
-  content: '';
+  content: "";
   position: absolute;
   display: none;
   top: 50%;
