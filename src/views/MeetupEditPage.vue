@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { fetchMeetup } from "@/apiService";
+import { fetchMeetup } from "@/api/meetupsApi";
 import MeetupFormLayout from "@/components/layouts/MeetupFormLayout";
 import MeetupForm from "@/components/meetup/MeetupForm";
 

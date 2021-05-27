@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import { fetchMeetups, getMeetupCoverLink } from "@/apiService";
+import { fetchMeetups } from "@/api/meetupsApi";
+import { getImageURL } from "@/api/imageApi";
 import MeetupsList from "@/components/meetups/MeetupsList";
 import MeetupsCalendar from "@/components/meetups/MeetupsCalendar";
 import MeetupsFilter from "@/components/meetups/MeetupsFilter";
@@ -60,7 +61,7 @@ export default {
         const meetupDate = new Date(meetup.date);
         return {
           ...meetup,
-          cover: meetup.imageId ? getMeetupCoverLink(meetup) : undefined,
+          cover: meetup.imageId ? getImageURL(meetup.imageId) : undefined,
           date: meetupDate,
           localDate: meetupDate.toLocaleString(navigator.language, {
             year: "numeric",

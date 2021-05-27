@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { ImageService } from "@/imageService";
+import { getImageURL, uploadImage } from "@/api/imageApi";
 
 export default {
   name: "ImageUploader",
@@ -49,7 +49,7 @@ export default {
       // если есть ид изображения, то вывыдем его фоном
       if (this.imageId !== null) {
         bgStyle = {
-          "--bg-image": `url('${ImageService.getImageURL(this.imageId)}')`
+          "--bg-image": `url('${getImageURL(this.imageId)}')`
         };
       }
 
@@ -77,7 +77,7 @@ export default {
 
       this.loading = true;
 
-      ImageService.uploadImage(files[0])
+      uploadImage(files[0])
         .then(image => {
           const imageId = image.id || image.id === 0 ? image.id : null;
           this.$emit("change", imageId);

@@ -32,7 +32,8 @@
 </template>
 
 <script>
-import { fetchMeetup, getMeetupCoverLink } from "@/apiService";
+import { fetchMeetup } from "@/api/meetupsApi";
+import { getImageURL } from "@/api/imageApi";
 import ContentTabs from "@/components/ui/ContentTabs";
 import PrimaryButton from "@/components/ui/buttons/PrimaryButton";
 import SecondaryButton from "@/components/ui/buttons/SecondaryButton";
@@ -76,7 +77,7 @@ export default {
         return "";
       }
 
-      return getMeetupCoverLink(this.meetup);
+      return getImageURL(this.meetup.imageId);
     },
     date() {
       if (!this.meetup || !this.meetup.date) {

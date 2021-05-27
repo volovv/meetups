@@ -21,7 +21,7 @@
 import AuthLayout from "@/components/layouts/AuthLayout";
 import AuthForm from "@/components/AuthForm";
 
-import { register } from "@/apiService";
+import { register } from "@/api/authApi";
 import { getRegisterFieldSpecifications } from "@/authService";
 
 export default {
