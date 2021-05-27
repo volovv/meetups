@@ -106,7 +106,8 @@ export default {
   justify-content: center;
   cursor: pointer;
   transition: 0.3s all;
-  background: url("../../assets/icons/icon-pill-active.svg") left center no-repeat;
+  background: url("../../assets/icons/icon-pill-active.svg") left center
+    no-repeat;
   background-size: cover;
 }
 

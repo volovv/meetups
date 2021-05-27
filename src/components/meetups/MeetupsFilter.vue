@@ -40,7 +40,7 @@
           </app-input>
         </form-group>
 
-        <form-group v-if="localView"  :inline="true">
+        <form-group v-if="localView" :inline="true">
           <page-tabs :selected.sync="localView"></page-tabs>
         </form-group>
       </slot>
