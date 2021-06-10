@@ -51,6 +51,10 @@ export const getRegisterFieldSpecifications = () => {
         {
           rule: "required",
           message: "Требуется ввести Email"
+        },
+        {
+          rule: "email",
+          message: "Введите корректный Email"
         }
       ]
     },
@@ -77,6 +81,10 @@ export const getRegisterFieldSpecifications = () => {
         {
           rule: "required",
           message: "Требуется ввести пароль"
+        },
+        {
+          rule: "passwordStrength",
+          message: "Пароль должен быть не менее 6 символов"
         }
       ]
     },
