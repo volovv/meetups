@@ -57,7 +57,8 @@ export default {
 
   data() {
     return {
-      invalidFields: []
+      invalidFields: [],
+      prevInvalidFields: []
     };
   },
 
@@ -88,6 +89,8 @@ export default {
       if (this.invalidFields.length) {
         this.showInvalidMessage();
       } else {
+        // удалить предыдущие сообщения об ошибках
+        this.removeInvalidMessages();
         this.$emit("submit", this.localFields);
       }
     },
@@ -132,11 +135,36 @@ export default {
         return;
       }
 
-      alert(this.invalidFields.shift().message);
+      // удалить предыдущие сообщения об ошибках
+      this.removeInvalidMessages();
+
+      // показать ошибку
+      this.$toaster.error(
+        this.invalidFields[0].message,
+        `auth_${this.invalidFields[0].name}_invalid`
+      );
+
+      // сохранить выведенное сообщение
+      this.prevInvalidFields = this.invalidFields;
+    },
+    // удалить сообщения об ошибках
+    removeInvalidMessages() {
+      for (let field of this.prevInvalidFields) {
+        this.$toaster.removeToast(`auth_${field.name}_invalid`);
+      }
     },
     // проверка на обязательно заполненное поле
     checkRequiredField(field) {
       return !!field.value;
+    },
+    // проверка на правильность заплнения email-поля
+    checkEmailField(field) {
+      const re = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+      return re.test(field.value);
+    },
+    // проверка на надежность пароля
+    checkPasswordStrengthField(field) {
+      return field.value.length > 5;
     },
     // проверка на обязательно заполненное поле - checkbox
     checkRequiredCheckboxField(field) {
@@ -163,6 +191,7 @@ export default {
       const confirmField = this.localFields.find(
         field => field.field === currentValidate.params.nameConfirmField
       );
+
       if (confirmField && confirmField.value !== field.value) {
         return false;
       }

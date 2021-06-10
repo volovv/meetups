@@ -42,10 +42,10 @@ export default {
 
       // при ошибке показать сообщение
       if (result.error) {
-        alert(result.message);
-        // иначе вывести полное имя
+        this.$toaster.error(result.error);
       } else if (result.fullname) {
-        alert(result.fullname);
+        // иначе вывести полное имя
+        this.$toaster.success(`Вы зашли под именем ${result.fullname}`);
       }
     }
   },

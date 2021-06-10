@@ -43,10 +43,10 @@ export default {
 
       // при ошибке показать сообщение
       if (result.error) {
-        alert(result.message);
-        // иначе вывести bl пользователя
+        this.$toaster.error(result.error);
       } else if (result.id) {
-        alert(result.id);
+        // иначе показать сообщение об успешной регистрации
+        this.$toaster.success("Вы успешно зарегистрированы");
       }
     }
   },
