@@ -1,4 +1,5 @@
 import axios from "axios";
+import TopProgressBar from "@/plugins/TopProgressBar";
 
 /** URL адрес API */
 export const API_URL = process.env.VUE_APP_API_URL;
@@ -11,49 +12,69 @@ export default {
   async get(url) {
     const fullApiUrl = getFullApiUrl(url);
 
+    TopProgressBar.start();
+
     return await axios
       .get(fullApiUrl)
-      .then(function(response) {
+      .then(response => {
+        TopProgressBar.finish();
         return response.data;
       })
-      .catch(function(error) {
+      .catch(error => {
         console.log(error);
+        TopProgressBar.fail();
+        return { error };
       });
   },
   async post(url, postData) {
     const fullApiUrl = getFullApiUrl(url);
 
+    TopProgressBar.start();
+
     return await axios
       .post(fullApiUrl, postData)
-      .then(function(response) {
+      .then(response => {
+        TopProgressBar.finish();
         return response.data;
       })
-      .catch(function(error) {
+      .catch(error => {
         console.log(error);
+        TopProgressBar.fail();
+        return { error };
       });
   },
   async put(url, postData) {
     const fullApiUrl = getFullApiUrl(url);
 
+    TopProgressBar.start();
+
     return await axios
       .put(fullApiUrl, postData)
-      .then(function(response) {
+      .then(response => {
+        TopProgressBar.finish();
         return response.data;
       })
-      .catch(function(error) {
+      .catch(error => {
         console.log(error);
+        TopProgressBar.fail();
+        return { error };
       });
   },
   async delete(url) {
     const fullApiUrl = getFullApiUrl(url);
 
+    TopProgressBar.start();
+
     return await axios
       .delete(fullApiUrl)
-      .then(function(response) {
+      .then(response => {
+        TopProgressBar.finish();
         return response.data;
       })
-      .catch(function(error) {
+      .catch(error => {
         console.log(error);
+        TopProgressBar.fail();
+        return { error };
       });
   }
 };
