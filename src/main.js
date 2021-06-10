@@ -1,7 +1,12 @@
 import Vue from "vue";
 import App from "./App.vue";
-import { router } from "@/router";
 import "@/assets/styles/app.css";
+import { router } from "@/router";
+import TopProgressBarPlugin from "./plugins/TopProgressBar/plugin";
+import Toaster from "./plugins/Toaster/plugin";
+
+Vue.use(TopProgressBarPlugin, { router });
+Vue.use(Toaster, { router });
 
 Vue.config.productionTip = false;
 
