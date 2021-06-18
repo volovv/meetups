@@ -99,6 +99,12 @@ export default {
     async getMeetup() {
       this.meetup = await fetchMeetup(this.meetupId);
     }
+  },
+
+  metaInfo() {
+    return {
+      title: this.meetup && this.meetup.title
+    };
   }
 };
 </script>

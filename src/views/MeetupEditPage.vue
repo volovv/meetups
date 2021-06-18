@@ -64,6 +64,12 @@ export default {
           }
         });
     }
+  },
+
+  metaInfo() {
+    return {
+      title: `Редактирование митапа ${this.meetup && this.meetup.title}`
+    };
   }
 };
 </script>

@@ -51,6 +51,10 @@ export default {
           }
         });
     }
+  },
+
+  metaInfo: {
+    title: "Создание митапа"
   }
 };
 </script>

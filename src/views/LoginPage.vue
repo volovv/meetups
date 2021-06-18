@@ -50,7 +50,11 @@ export default {
     }
   },
 
-  fieldSpecifications: getLoginFieldSpecifications()
+  fieldSpecifications: getLoginFieldSpecifications(),
+
+  metaInfo: {
+    title: "Вход"
+  }
 };
 </script>
 

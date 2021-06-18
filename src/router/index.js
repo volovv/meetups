@@ -1,7 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import VueMeta from "vue-meta";
 
 Vue.use(VueRouter);
+Vue.use(VueMeta);
 
 export function scrollBehavior(to, from, savedPosition) {
   // сохранить позицию, если переход по стрелкам навигации

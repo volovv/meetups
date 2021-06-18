@@ -51,7 +51,11 @@ export default {
     }
   },
 
-  fieldSpecifications: getRegisterFieldSpecifications()
+  fieldSpecifications: getRegisterFieldSpecifications(),
+
+  metaInfo: {
+    title: "Регистрация"
+  }
 };
 </script>
 

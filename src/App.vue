@@ -11,7 +11,13 @@ import BaseLayout from "./components/layouts/BaseLayout";
 
 export default {
   name: "App",
-  components: { BaseLayout }
+  components: { BaseLayout },
+
+  metaInfo: {
+    titleTemplate: titleChunk => {
+      return titleChunk ? `${titleChunk} | Meetups` : "Meetups";
+    }
+  }
 };
 </script>
 
