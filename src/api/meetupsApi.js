@@ -27,12 +27,12 @@ export function createMeetup(meetup) {
 }
 
 /**
- * Обновляет митап по его ID с API
- * @param {Number} meetupId
+ * Обновляет митап через API
+ * @param {Object} meetup
  * @return {Promise} - объект с данными митапа
  */
-export function updateMeetup(meetupId) {
-  return httpClient.put(`meetups`, meetupId);
+export function updateMeetup(meetup) {
+  return httpClient.put(`meetups`, meetup);
 }
 
 /**
