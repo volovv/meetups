@@ -109,7 +109,6 @@ export default {
       this.$emit("cancel");
     },
     submit() {
-      console.log(this.localMeetup);
       this.$emit("submit", cloneDeep(this.localMeetup));
     },
     addAgendaItem() {
