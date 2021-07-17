@@ -14,3 +14,18 @@ new Vue({
   router,
   render: h => h(App)
 }).$mount("#app");
+
+// глобальная обработка ошибок
+Vue.config.errorHandler = err => {
+  Vue.prototype.$toaster.error(`Внимание: Необработанная ошибка Vue! \nПричина: ${err}`);
+};
+
+window.onunhandledrejection = event => {
+  Vue.prototype.$toaster.error(
+    `Внимание: Необработанная ошибка Promise! \nПричина: ${event.reason}`
+  );
+};
+
+window.onerror = msg => {
+  Vue.prototype.$toaster.error(`Внимание: Необработанная ошибка! \nПричина: ${msg}`);
+};

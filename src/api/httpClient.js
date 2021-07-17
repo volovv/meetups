@@ -1,9 +1,14 @@
 import axios from "axios";
-import TopProgressBar from "@/plugins/TopProgressBar";
 
 /** URL адрес API */
 export const API_URL = process.env.VUE_APP_API_URL;
 
+/**
+ * Создает полный путь к api
+ *
+ * @param {String} url - исходный url
+ * @return {String} - url, содержащий полный путь к API
+ */
 function getFullApiUrl(url) {
   return `${API_URL}/${url}`;
 }
@@ -11,70 +16,26 @@ function getFullApiUrl(url) {
 export default {
   async get(url) {
     const fullApiUrl = getFullApiUrl(url);
+    const { data } = await axios.get(fullApiUrl);
 
-    TopProgressBar.start();
-
-    return await axios
-      .get(fullApiUrl)
-      .then(response => {
-        TopProgressBar.finish();
-        return response.data;
-      })
-      .catch(error => {
-        console.log(error);
-        TopProgressBar.fail();
-        return { error };
-      });
+    return data;
   },
   async post(url, postData) {
     const fullApiUrl = getFullApiUrl(url);
+    const { data } = await axios.post(fullApiUrl, postData);
 
-    TopProgressBar.start();
-
-    return await axios
-      .post(fullApiUrl, postData)
-      .then(response => {
-        TopProgressBar.finish();
-        return response.data;
-      })
-      .catch(error => {
-        console.log(error);
-        TopProgressBar.fail();
-        return { error };
-      });
+    return data;
   },
   async put(url, postData) {
     const fullApiUrl = getFullApiUrl(url);
+    const { data } = await axios.put(fullApiUrl, postData);
 
-    TopProgressBar.start();
-
-    return await axios
-      .put(fullApiUrl, postData)
-      .then(response => {
-        TopProgressBar.finish();
-        return response.data;
-      })
-      .catch(error => {
-        console.log(error);
-        TopProgressBar.fail();
-        return { error };
-      });
+    return data;
   },
   async delete(url) {
     const fullApiUrl = getFullApiUrl(url);
+    const { data } = await axios.delete(fullApiUrl);
 
-    TopProgressBar.start();
-
-    return await axios
-      .delete(fullApiUrl)
-      .then(response => {
-        TopProgressBar.finish();
-        return response.data;
-      })
-      .catch(error => {
-        console.log(error);
-        TopProgressBar.fail();
-        return { error };
-      });
+    return data;
   }
 };

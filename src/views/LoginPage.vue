@@ -23,6 +23,7 @@ import AuthForm from "@/components/AuthForm";
 
 import { login } from "@/api/authApi";
 import { getLoginFieldSpecifications } from "@/authService";
+import { withProcessingResponse, showToasterMessage } from "@/helpers";
 
 export default {
   name: "LoginPage",
@@ -38,14 +39,23 @@ export default {
       const password = fields.find(field => field.field === "password");
 
       // получить результат запроса
-      let result = await login(email.value, password.value);
+      const result = await withProcessingResponse(login)(
+        email.value,
+        password.value
+      );
 
-      // при ошибке показать сообщение
+      if (result.success) {
+        return showToasterMessage({
+          status: "success",
+          message: `Вы зашли под именем ${result.success.fullname}`
+        });
+      }
+
       if (result.error) {
-        this.$toaster.error(result.error);
-      } else if (result.fullname) {
-        // иначе вывести полное имя
-        this.$toaster.success(`Вы зашли под именем ${result.fullname}`);
+        return showToasterMessage({
+          status: "error",
+          message: result.error.message
+        });
       }
     }
   },

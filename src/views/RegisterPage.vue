@@ -23,6 +23,7 @@ import AuthForm from "@/components/AuthForm";
 
 import { register } from "@/api/authApi";
 import { getRegisterFieldSpecifications } from "@/authService";
+import { withProcessingResponse, showToasterMessage } from "@/helpers";
 
 export default {
   name: "RegisterPage",
@@ -39,14 +40,24 @@ export default {
       const password = fields.find(field => field.field === "password");
 
       // получить результат запроса
-      let result = await register(email.value, name.value, password.value);
+      const result = await withProcessingResponse(register)({
+        email: email.value,
+        fullname: name.value,
+        password: password.value
+      });
 
-      // при ошибке показать сообщение
+      if (result.success) {
+        return showToasterMessage({
+          status: "success",
+          message: `Вы успешно зарегистрированы под именем ${result.success.fullname}`
+        });
+      }
+
       if (result.error) {
-        this.$toaster.error(result.error);
-      } else if (result.id) {
-        // иначе показать сообщение об успешной регистрации
-        this.$toaster.success("Вы успешно зарегистрированы");
+        return showToasterMessage({
+          status: "error",
+          message: result.error.message
+        });
       }
     }
   },
