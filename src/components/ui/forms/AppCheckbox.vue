@@ -36,10 +36,7 @@ export default {
     },
     listeners() {
       return {
-        ...this.$listeners,
-        change: $event => {
-          $event.preventDefault();
-        }
+        ...this.$listeners
       };
     }
   }
